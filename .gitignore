@@ -1,0 +1,12 @@
+.qodo
+
+venv/
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+media/
