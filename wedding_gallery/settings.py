@@ -25,6 +25,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGIN_REDIRECT_URL = '/dashboard/'
 ROOT_URLCONF = 'wedding_gallery.urls'
 
 TEMPLATES = [
