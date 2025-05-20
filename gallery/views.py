@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from .models import Album, Foto
+from .models import Album, Foto, Curtida, Comentario 
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+
 def album_list(request):
     albuns = Album.objects.all()
     return render(request, 'gallery/album_list.html', {'albuns': albuns})
@@ -21,8 +21,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             
-            return('home.html')  # redireciona para a página principal após login
-
+            return render(request, 'home.html')  # redireciona para a página principal após login
         else:
             messages.error(request, 'Usuário ou senha inválidos.')
 
