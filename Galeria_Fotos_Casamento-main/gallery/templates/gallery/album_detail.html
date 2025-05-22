@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Álbum - {{ album.nome }}</title>
+</head>
+<body>
+    <h1>Galeria de Casa</h1>
+    <img src="{{ album.capa.url }}" alt="Capa da Galeria">
+    <h2>Fotos</h2>
+    <ul>
+        {% for foto in fotos %}
+            <li><img src="{{ foto.imagem.url }}" alt="Foto"></li>
+        {% empty %}
+            <li>Sem fotos aprovadas ainda.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

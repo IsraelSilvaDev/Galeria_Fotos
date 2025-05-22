@@ -1,17 +1,38 @@
+{% extends 'index.html'%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de albuns</title>
+    <title>Álbuns de Casamento</title>
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
-<body>
-    <h1>Lista de albuns</h1>
-    <ul>
-        {% for album in albuns %}
-            <li><a href="{% url 'album_detail' album.id %}">{{ album.nome }}</a></li>
-        {% empty %}
-            <li>Nenhum álbum encontrado.</li>
-        {% endfor %}
-    </ul>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Álbuns de Casamento</h1>
+
+        {% if albuns %}
+            <div class="row">
+                {% for album in albuns %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{% if album.capa %}{% static album.capa %}{% else %}{% static 'images/default_cover.jpg' %}{% endif %}" class="card-img-top" alt="Wedding album cover showing the couple celebrating their marriage in a joyful outdoor setting with soft natural light and festive decorations">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ album.nome }}</h5>
+                                <a href="{% url 'album_detail' album.id %}" class="btn btn-primary">Ver álbum</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-warning text-center" role="alert">
+                Nenhum álbum encontrado.
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,153 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+    .header {
+        background: #50b3a2;
+        color: #fff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #e8491d 3px solid;
+    }
+    .header h1 {
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0;
+        font-size: 24px;
+    }
+    .nav {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    .nav button {
+        background: #50b3a2;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .nav button:hover {
+        background: #e8491d;
+    }
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 20px 0;
+    }
+    .gallery img {
+        width: 30%;
+        margin-bottom: 20px;
+        border: 5px solid #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    .gallery img:hover {
+        transform: scale(1.05);
+    }
+    .upload-form {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .upload-form input[type="file"] {
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .upload-form button {
+        background: #50b3a2;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .upload-form button:hover {
+        background: #e8491d;
+    }
+    .comments-section {
+        margin: 20px 0;
+    }
+    .comments-section h2 {
+        text-align: center;
+    }
+    .comments-section textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .comments-section button {
+        background: #50b3a2;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .comments-section button:hover {
+        background: #e8491d;
+    }
+</style>
+    <div class="header">
+        <h1>Sejam Bem Vindos a Galeria de Fotos </h1>
+    </div>
+    <div class="nav">
+        <button onclick="filterGallery('ceremony')">Visualizar </button>
+        <button onclick="filterGallery('reception')">Curtir</button>
+        <button onclick="filterGallery('pre-wedding')">Comentar</button>
+        <!--<button onclick="filterGallery('family')">Family</button> --
+        <button onclick="filterGallery('all')">All</button>
+    </div>
+    <div class="container">
+        <div class="gallery" id="gallery">
+            <!-- Photos will be dynamically loaded here -->
+        </div>
+        <div class="upload-form">
+            <h2>Enviar Fotos</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*">
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <div class="comments-section">
+            <h2>Comments</h2>
+            <textarea name="comment" rows="4" placeholder="Add your comment..."></textarea>
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+    <script>
+        function filterGallery(category) {
+            var gallery = document.getElementById('gallery');
+            var photos = gallery.getElementsByTagName('img');
+            for (var i = 0; i < photos.length; i++) {
+                if (category === 'all') {
+                    photos[i].style.display = 'block';
+                } else {
+                    if (photos[i].classList.contains(category)) {
+                        photos[i].style.display = 'block';
+                    } else {
+                        photos[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+</script>
+{% endblock %}
