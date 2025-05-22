@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.timezone import now
+
 
 class Album(models.Model):
     nome = models.CharField(max_length=255)
@@ -23,9 +23,14 @@ class Foto(models.Model):
 class Curtida(models.Model):
     foto = models.ForeignKey(Foto, on_delete=models.CASCADE, related_name='curtidas')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    def __str__(self):
+        return f"{self.usuario} curtiu {self.foto}"
 class Comentario(models.Model):
     foto = models.ForeignKey(Foto, on_delete=models.CASCADE, related_name='comentarios')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     texto = models.TextField()
     data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.usuario} comentou {self.foto}" 
+   

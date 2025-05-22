@@ -1,4 +1,5 @@
 import os
+import django
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 't%!#o=oa=prq4f56cgqhxeu^5no=c8c+d*h9l1t*=p*7yt%8&o'
@@ -13,6 +14,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gallery',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -63,8 +66,8 @@ DATABASES = {
 
 
 
-
-
-STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/staticfiles/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = [os.path.join (BASE_DIR, 'static')]
